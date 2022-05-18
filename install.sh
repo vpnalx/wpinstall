@@ -8,5 +8,18 @@ sudo mysql -uroot -e "create database wordpress"
 sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpressuser'@'localhost' IDENTIFIED BY 'Superstrong7887pwd'"
 sudo mysql -uroot -e "FLUSH PRIVILEGES"
 
+sudo wget -c http://wordpress.org/latest.tar.gz
+tar -xzvf latest.tar.gz
+sudo cp -a wordpress/. /var/www/html/
+sudo chown -R www-data:www-data /var/www/html/
+sudo chmod -R 775 /var/www/html/
+
+sed -e "s/database_name_here/wordpress/" -e "s/username_here/wordpressuser/" -e "s/password_here/Superstrong7887pwd/" wp-config-sample.php > wp-config.php
+
+
+SALT=$(curl -L https://api.wordpress.org/secret-key/1.1/salt/)
+STRING='put your unique phrase here'
+printf '%s\n' "g/$STRING/d" a "$SALT" . w | ed -s wp-config.php
+
 
 
