@@ -20,6 +20,7 @@ sed -e "s/database_name_here/wordpress/" -e "s/username_here/wordpressuser/" -e 
 SALT=$(curl -L https://api.wordpress.org/secret-key/1.1/salt/)
 STRING='put your unique phrase here'
 printf '%s\n' "g/$STRING/d" a "$SALT" . w | ed -s /var/www/html/wp-config.php
+sudo rm /var/www/index.html
 
 
 
