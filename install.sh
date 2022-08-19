@@ -14,7 +14,7 @@ sudo cp -a wordpress/. /var/www/html/
 sudo chown -R www-data:www-data /var/www/html/
 sudo chmod -R 775 /var/www/html/
 
-sed -e "s/database_name_here/wordpress/" -e "s/username_here/wordpressuser/" -e "s/password_here/Superstrong7887pwd/" wp-config-sample.php > /var/www/html/wp-config.php
+sed -e "s/database_name_here/wordpress/" -e "s/username_here/wordpressuser/" -e "s/password_here/Superstrong7887pwd/" /var/www/html/wp-config-sample.php > /var/www/html/wp-config.php
 
 
 SALT=$(curl -L https://api.wordpress.org/secret-key/1.1/salt/)
